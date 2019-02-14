@@ -23,14 +23,14 @@ class Application
         end
       end
     elsif req.path.match(/add/)
-      @@items.each do |item|
-        @@cart << item
-        resp.write "added #{item}"
-    elsif
-      resp.write "We don't have that item"
+      fruit = req.params["item"]
+      if @@items.include?(fruit)
+        @@cart << fruit
+        resp.write "added #{fruit}"
+      else
+        resp.write "We don't have that item"
+      end
     end
-  end
-
     resp.finish
   end
 
